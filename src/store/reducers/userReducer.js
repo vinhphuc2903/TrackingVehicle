@@ -3,6 +3,8 @@ import actionTypes from "../actions/actionTypes";
 const initialState = {
   isLoggedIn: false,
   userInfo: null,
+  dailyReport: [],
+  userObj: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -25,6 +27,28 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: false,
         userInfo: null,
+      };
+    case actionTypes.FETCH_DAILY_REPORT_SUCCESS:
+      state.dailyReport = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_DAILY_REPORT_FAILED:
+      state.dailyReport = [];
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_INFOR_USER_SUCCESS:
+      console.log("check ss", action);
+      state.userObj = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_INFOR_USER_FAILED:
+      console.log("check f", action);
+      state.userObj = {};
+      return {
+        ...state,
       };
     default:
       return state;

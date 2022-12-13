@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.handleRegisterApi = exports.handleLoginApi = void 0;
+exports.handleGetUser = exports.handleDailyReport = exports.handleRegisterApi = exports.handleLoginApi = void 0;
 
 var _axios = _interopRequireDefault(require("../axios"));
 
@@ -23,3 +23,15 @@ var handleRegisterApi = function handleRegisterApi(data) {
 };
 
 exports.handleRegisterApi = handleRegisterApi;
+
+var handleDailyReport = function handleDailyReport(date) {
+  return _axios["default"].get("/api/Position/Daily-Report?date=".concat(date));
+};
+
+exports.handleDailyReport = handleDailyReport;
+
+var handleGetUser = function handleGetUser() {
+  return _axios["default"].get("/api/Identity/get-user");
+};
+
+exports.handleGetUser = handleGetUser;

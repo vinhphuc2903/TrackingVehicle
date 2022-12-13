@@ -8,9 +8,10 @@ import { path } from "../utils";
 
 import Home from "../routes/Home";
 import Login from "./Auth/Login";
-import HomePage from "./HomePage/HomePage";
 import Register from "./Auth/Register";
 import { ToastContainer } from "react-toastify";
+import DemoApp from "./MapCpm/InfoWindow";
+import Statiscical from "./MapCpm/Statiscical";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -40,7 +41,8 @@ class App extends Component {
                 <Route path={path.HOME} exact component={Home} />
                 <Route path={path.LOGIN} exact component={Login} />
                 <Route path={path.REGISTER} exact component={Register} />
-                <Route path={path.HOMEPAGE} exact component={HomePage} />
+                <Route path={path.HOMEPAGE} exact component={DemoApp} />
+                <Route path={path.STATISCICAL} exact component={Statiscical} />
               </Switch>
             </span>
             <ToastContainer

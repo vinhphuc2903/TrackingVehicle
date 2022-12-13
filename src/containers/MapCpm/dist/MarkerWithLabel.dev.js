@@ -4,7 +4,6 @@
 // const {
 //   MarkerWithLabel,
 // } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
-
 // const MapWithAMarkerWithLabel = compose(
 //   withScriptjs,
 //   withGoogleMap
@@ -23,12 +22,10 @@
 //     </MarkerWithLabel>
 //   </GoogleMap>
 // ));
-
 // class DemoApp extends React.PureComponent {
 //   componentWillMount() {
 //     this.setState({ markers: [] });
 //   }
-
 //   componentDidMount() {
 //     const url = [
 //       // Length issue
@@ -36,14 +33,12 @@
 //       `/farrrr/dfda7dd7fccfec5474d3`,
 //       `/raw/758852bbc1979f6c4522ab4e92d1c92cba8fb0dc/data.json`,
 //     ].join("");
-
 //     fetch(url)
 //       .then((res) => res.json())
 //       .then((data) => {
 //         this.setState({ markers: data.photos });
 //       });
 //   }
-
 //   render() {
 //     return (
 //       <MapWithAMarkerWithLabel
@@ -55,5 +50,5 @@
 //     );
 //   }
 // }
-
 // export default DemoApp;
+"use strict";

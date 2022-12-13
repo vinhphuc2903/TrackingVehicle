@@ -3,6 +3,7 @@ export const path = {
   LOGIN: "/login",
   REGISTER: "/register",
   HOMEPAGE: "/home",
+  STATISCICAL: "/statiscical",
 };
 
 export const languages = {
