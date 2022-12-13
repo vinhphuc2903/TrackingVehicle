@@ -7,6 +7,7 @@ import * as actions from "../../store/actions";
 import "./Login.scss";
 import { withRouter } from "react-router";
 import { handleLoginApi } from "../../services/userService";
+import Cookies from "js-cookie";
 
 class Login extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class Login extends Component {
         data.result.results.Success === true
       ) {
         this.props.userLoginSucces(data.result.results.Token);
+        Cookies.set("token", JSON.stringify(data.result.results.Token), {});
         console.log("login success");
         if (this.props.history) {
           this.props.history.push("/home");

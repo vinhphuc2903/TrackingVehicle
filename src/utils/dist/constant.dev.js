@@ -8,7 +8,8 @@ var path = {
   HOME: "/",
   LOGIN: "/login",
   REGISTER: "/register",
-  HOMEPAGE: "/home"
+  HOMEPAGE: "/home",
+  STATISCICAL: "/statiscical"
 };
 exports.path = path;
 var languages = {

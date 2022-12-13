@@ -1,7 +1,11 @@
 import actionTypes from "./actionTypes";
 import { toast } from "react-toastify";
 
-import { handleRegisterApi } from "../../services/userService";
+import {
+  handleRegisterApi,
+  handleDailyReport,
+  handleGetUser,
+} from "../../services/userService";
 export const addUserSuccess = () => ({
   type: actionTypes.ADD_USER_SUCCESS,
 });
@@ -46,4 +50,54 @@ export const registerServiceSuccess = () => ({
 
 export const registerServiceFail = () => ({
   type: actionTypes.REGISTER_FAILED,
+});
+
+export const dailyReportService = (date) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await handleDailyReport(date);
+      if (res && res.code === "ok") {
+        dispatch(handleDailyReportSuccess(res.result));
+      } else {
+        dispatch(handleDailyReportFail());
+      }
+    } catch (error) {
+      dispatch(handleDailyReportFail());
+      console.log("handleDailyReportFail:", error);
+    }
+  };
+};
+
+export const handleDailyReportSuccess = (data) => ({
+  type: actionTypes.FETCH_DAILY_REPORT_SUCCESS,
+  data: data,
+});
+
+export const handleDailyReportFail = () => ({
+  type: actionTypes.FETCH_DAILY_REPORT_FAILED,
+});
+
+export const fetchUserService = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await handleGetUser();
+      if (res && res.code === "ok") {
+        dispatch(handleGetUserSuccess(res.result));
+      } else {
+        dispatch(handleGetUserFail());
+      }
+    } catch (error) {
+      dispatch(handleGetUserFail());
+      console.log("handleGetUserFail:", error);
+    }
+  };
+};
+
+export const handleGetUserSuccess = (data) => ({
+  type: actionTypes.FETCH_INFOR_USER_SUCCESS,
+  data: data,
+});
+
+export const handleGetUserFail = () => ({
+  type: actionTypes.FETCH_INFOR_USER_FAILED,
 });
