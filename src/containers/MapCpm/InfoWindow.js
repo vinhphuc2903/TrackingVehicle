@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import { withRouter } from "react-router";
 import "./infoWindow.scss";
+import moment from "moment/moment";
 const { compose, withProps, withStateHandlers } = require("recompose");
 
 // import { FaAnchor } from "react-icons"
@@ -909,13 +910,19 @@ class DemoApp extends React.PureComponent {
     this.state = {
       date: "",
       inforUser: {},
+      dailyReportArr: [],
     };
   }
   componentWillMount() {
     this.setState({ markers: [] });
+
+    // this.props.dailyReportRedux(date);
   }
 
   componentDidMount() {
+    // let date = new Date();
+    // let changeDate = moment(date).format("YYYY-MM-DD");
+    this.props.dailyReportRedux("2022-13-12");
     this.props.fetchUserRedux();
     const url = [
       // Length issue
@@ -932,8 +939,14 @@ class DemoApp extends React.PureComponent {
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.userObj !== this.props.userObj) {
+      // this.props.fetchUserRedux();
       this.setState({
         inforUser: this.props.userObj,
+      });
+    }
+    if (prevProps.dailyReport !== this.props.dailyReport) {
+      this.setState({
+        dailyReportArr: this.props.dailyReport,
       });
     }
   }
@@ -943,13 +956,13 @@ class DemoApp extends React.PureComponent {
     });
   };
   SubmitDate = () => {
-    // this.props.dailyReportRedux(this.state.date);
     if (this.props.history) {
       this.props.history.push("/statiscical", { date: this.state.date });
     }
   };
   render() {
-    let { date, inforUser } = this.state;
+    let { date, inforUser, dailyReportArr } = this.state;
+
     console.log("check state", this.state);
     return (
       <>
@@ -993,12 +1006,14 @@ class DemoApp extends React.PureComponent {
 const mapStateToProps = (state) => {
   return {
     userObj: state.user.userObj,
+    dailyReport: state.user.dailyReport,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserRedux: () => dispatch(actions.fetchUserService()),
+    dailyReportRedux: (date) => dispatch(actions.dailyReportService(date)),
   };
 };
 
