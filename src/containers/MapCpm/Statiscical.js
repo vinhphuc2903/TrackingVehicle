@@ -45,6 +45,7 @@ class Statiscical extends Component {
                 <table className="table table-striped w-auto">
                   <thead>
                     <tr>
+                      <th>Tên người dùng</th>
                       <th>Tốc độ trung bình</th>
                       <th>Ngày thực hiện</th>
                     </tr>
@@ -52,6 +53,7 @@ class Statiscical extends Component {
 
                   <tbody>
                     <tr class="table-info">
+                      <td>Long</td>
                       <td>{dailyReportArr.averageSpeed}</td>
                       <td>{dailyReportArr.date}</td>
                     </tr>
@@ -68,10 +70,8 @@ class Statiscical extends Component {
                   </thead>
 
                   <tbody>
-                    {dailyReportArr &&
-                      dailyReportArr.road &&
-                      dailyReportArr.road.length > 0 &&
-                      dailyReportArr.road.map((item, index) => {
+                    {
+                      dailyReportArr?.road?.map((item, index) => {
                         return (
                           <tr className="table-info" key={index}>
                             <td>{item[0]}</td>

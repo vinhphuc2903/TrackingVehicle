@@ -177,7 +177,6 @@ class DemoApp extends React.PureComponent {
   };
   render() {
     let { date, inforUser } = this.state;
-    console.log("check state", this.state);
     return (
       <>
         <div className="name-user">
@@ -194,14 +193,27 @@ class DemoApp extends React.PureComponent {
             Submit
           </button>
         </div>
-        <MapWithAMakredInfoWindow
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzo9Xzk5QwuAixqF8Kxdxp1zgMfL2DtKA&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={
-            <div style={{ height: `1000px`, marginTop: "100px" }} />
-          }
-          mapElement={<div style={{ height: `100%` }} />}
-        />
+        <div>
+          <MapWithAMakredInfoWindow
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzo9Xzk5QwuAixqF8Kxdxp1zgMfL2DtKA&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: '600px' }} />}
+            containerElement={
+              <div style={{ height: `600px`, marginTop: "20px", marginBottom: "20px" }} />
+            }
+            mapElement={<div style={{ height: '600px' }} />}
+          />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            color: '#a41818',
+            fontSize: '20px',
+            fontWeight: '500'
+          }}
+        >
+          Biểu đồ thống kê lịch sử di chuyển của xe {inforUser.username} trên google map
+        </div>
       </>
     );
   }
