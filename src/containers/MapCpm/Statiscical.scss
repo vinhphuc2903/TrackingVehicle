@@ -21,6 +21,8 @@
         .table-main {
             display: flex;
             gap: 30px;
+            max-height: 750px;
+            overflow: auto;
         }
     }
 }
