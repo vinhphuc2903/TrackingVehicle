@@ -1,0 +1,31 @@
+.name-user {
+    font-size: 20px;
+    border: 1px solid red;
+    border-radius: 4px;
+    width: 200px;
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 10px;
+    .name {
+        color: red;
+        margin-right: 10px;
+    }
+}
+
+.daily-report {
+    // height: 1px;
+    text-align: center;
+    input {
+        height: 30px;
+        width: 200px;
+        border-radius: 4px;
+        border: 1px solid #c1c1c1;
+        padding: 0 10px;
+        margin-right: 10px;
+    }
+    button {
+        width: 100px;
+        height: 30px;
+        text-align: center;
+    }
+}
