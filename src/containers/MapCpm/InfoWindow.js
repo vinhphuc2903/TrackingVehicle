@@ -4,6 +4,8 @@ import * as actions from "../../store/actions";
 import { withRouter } from "react-router";
 import "./infoWindow.scss";
 import moment from "moment/moment";
+import Cookies from "js-cookie";
+
 const { compose, withProps, withStateHandlers } = require("recompose");
 
 // import { FaAnchor } from "react-icons"
@@ -43,13 +45,13 @@ const MapWithAMakredInfoWindow = compose(
     defaultZoom={8}
     defaultCenter={{ lat: 16.065875475908143, lng: 108.19113976479787 }}
   >
-    <Marker
-      position={props?.dataInput}
-      onClick={props.onToggleOpen}
-    >
+    <Marker position={props?.dataInput} onClick={props.onToggleOpen}>
       {props.isOpen && (
         <InfoWindow onCloseClick={props.onToggleOpen}>
-          <div>Bắt đầu: ( Kinh độ: {props?.dataInput?.lat} , vĩ độ: {props?.dataInput?.lng} )</div>
+          <div>
+            Bắt đầu: ( Kinh độ: {props?.dataInput?.lat} , vĩ độ:{" "}
+            {props?.dataInput?.lng} )
+          </div>
         </InfoWindow>
       )}
     </Marker>
@@ -89,7 +91,6 @@ const MapWithAMakredInfoWindow = compose(
   </GoogleMap>
 ));
 
-
 class DemoApp extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -121,6 +122,9 @@ class DemoApp extends React.PureComponent {
       });
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.userInfo !== this.props.userInfo) {
+      Cookies.set("token", JSON.stringify(this.props?.Token), {});
+    }
     if (prevProps.userObj !== this.props.userObj) {
       // this.props.fetchUserRedux();
       this.setState({
@@ -150,10 +154,12 @@ class DemoApp extends React.PureComponent {
     const pathCoordinates = dailyReportArr?.road?.map((item) => {
       return {
         lat: item[0],
-        lng: item[1]
-      }
-    })
-    console.log(typeof pathCoordinates !== 'undefined' ? pathCoordinates[0] : 1)
+        lng: item[1],
+      };
+    });
+    console.log(
+      typeof pathCoordinates !== "undefined" ? pathCoordinates[0] : 1
+    );
     return (
       <>
         <div className="name-user">
@@ -172,7 +178,11 @@ class DemoApp extends React.PureComponent {
         </div>
         <MapWithAMakredInfoWindow
           dataPolyline={pathCoordinates}
-          dataInput={typeof pathCoordinates !== 'undefined' ? pathCoordinates[0] : { lat: 16.065875475908143, lng: 108.19113976479787 }}
+          dataInput={
+            typeof pathCoordinates !== "undefined"
+              ? pathCoordinates[0]
+              : { lat: 16.065875475908143, lng: 108.19113976479787 }
+          }
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzo9Xzk5QwuAixqF8Kxdxp1zgMfL2DtKA&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `650px` }} />}
           containerElement={
@@ -182,14 +192,15 @@ class DemoApp extends React.PureComponent {
         />
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '10px',
-            fontSize: '20px',
-            color: '#aa7070'
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10px",
+            fontSize: "20px",
+            color: "#aa7070",
           }}
         >
-            Lịch sử di chuyển ngày {moment().format("DD/MM/YYYY")} của {inforUser.username}
+          Lịch sử di chuyển ngày {moment().format("DD/MM/YYYY")} của{" "}
+          {inforUser.username}
         </div>
       </>
     );
@@ -197,6 +208,7 @@ class DemoApp extends React.PureComponent {
 }
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.user.userInfo,
     userObj: state.user.userObj,
     dailyReport: state.user.dailyReport,
   };
@@ -212,4 +224,3 @@ const mapDispatchToProps = (dispatch) => {
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(DemoApp)
 );
-
