@@ -106,7 +106,7 @@ class DemoApp extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.props.dailyReportRedux(moment().format("YYYY/MM/DD"));
+    this.props.dailyReportRedux(moment("2022/12/13").format("YYYY/MM/DD"));
     this.props.fetchUserRedux();
     const url = [
       `https://gist.githubusercontent.com`,
@@ -189,7 +189,7 @@ class DemoApp extends React.PureComponent {
             color: '#aa7070'
           }}
         >
-            Lịch sử di chuyển ngày {moment().format("DD/MM/YYYY")} của {inforUser.username}
+            Lịch sử di chuyển ngày {moment('2022/12/13').format("DD/MM/YYYY")} của {inforUser.username}
         </div>
       </>
     );

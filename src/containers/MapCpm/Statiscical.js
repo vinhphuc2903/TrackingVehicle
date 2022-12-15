@@ -66,7 +66,7 @@ class Statiscical extends Component {
                 <table className="table table-striped w-auto">
                   <thead>
                     <tr>
-                      <th>Tốc độ trung bình</th>
+                      <th>Tốc độ trung bình(m/s)</th>
                       <th>Ngày thực hiện</th>
                     </tr>
                   </thead>
